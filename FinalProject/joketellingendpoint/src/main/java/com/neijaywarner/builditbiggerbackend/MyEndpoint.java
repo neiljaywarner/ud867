@@ -9,6 +9,7 @@ package com.neijaywarner.builditbiggerbackend;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
+import com.google.appengine.repackaged.org.joda.time.DateTime;
 import com.neiljaywarner.builditbigger.JokeFactory;
 
 import javax.inject.Named;
@@ -38,7 +39,9 @@ public class MyEndpoint {
     @ApiMethod(name = "getJoke")
     public MyBean getJoke() {
         MyBean response = new MyBean();
-        response.setData("Joke:" + JokeFactory.newJoke());
+        DateTime dateTime = new DateTime();
+        dateTime.toLocalTime().toString();
+        response.setData("Joke fetched from server at:" + dateTime.toLocalTime().toString() + JokeFactory.newJoke());
         //TODO: The idea would be to flesh it out by having a Joke class instead of MyBean and
         // checking it out with stethos or PostMan/Charles
         // Perhaps even for fun confirm that we could write an Android app to access that endpoint
