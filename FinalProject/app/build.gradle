@@ -30,7 +30,19 @@ dependencies {
     // Added for AdMob
 
 
-    compile project(path: ':androidjoketellinglibrary')
-    compile 'com.android.support:appcompat-v7:23'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.google.code.findbugs:jsr305:2.0.1'
     compile 'com.google.android.gms:play-services:8.4.0'
-    compile project(path: ':joketellingendpoint', configuration: 'android-endpoints')}
+
+    compile project(path: ':joketellingendpoint', configuration: 'android-endpoints')
+
+    // Android JUnit Runner
+    androidTestCompile 'com.android.support.test:runner:0.5'
+
+// JUnit4 Rules
+    androidTestCompile 'com.android.support.test:rules:0.5'
+
+// Espresso core
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+
+}
