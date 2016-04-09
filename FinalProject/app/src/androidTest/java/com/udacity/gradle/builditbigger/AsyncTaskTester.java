@@ -42,28 +42,47 @@ public class AsyncTaskTester {
 
         // blocked by espresso knowing async task worker pool is not empty
         MainActivity mainActivity = activityActivityTestRule.getActivity();
-        Espresso.onView(withId(R.id.textViewJoke)).check(ViewAssertions.matches(isEmptyString()));
+        Espresso.onView(withId(R.id.textViewJoke)).check(ViewAssertions.matches(isValidString()));
 
 
     }
 
     /**
-     * Checks to see if a TextView's text is empty.
+     * Checks to see if a TextView's text is valid - not null, not empty, etc.
      * NOTE: see issue 72 for Espresso (https://code.google.com/p/android-test-kit/issues/detail?id=72)
      * @return  A Matcher to check using Espresso ViewAssertions.matches method
      */
-    public static Matcher<View> isEmptyString() {
+    public static Matcher<View> isValidString() {
         return new BoundedMatcher<View, TextView>(TextView.class) {
             @Override
             protected boolean matchesSafely(TextView textView) {
-                return textView != null
-                        && (textView.getText() == null || textView.getText().length() == 0);
+                if (textView == null)
+                {
+                    return false;
+                }
+
+                if (textView.getText() == null)
+                {
+                    return false;
+                }
+
+                if (textView.getText().length() == 0)
+                {
+                    return false;
+                }
+
+                return true;
+                //TODO: Code cleanup would be good here.
+
             }
 
             @Override
             public void describeTo(Description description) {
-                description.appendText("with text empty string");
+                description.appendText("with text NOT empty string");
             }
         };
     }
+
+    // ssee; http://www.programcreek.com/java-api-examples/index.php?source_dir=Ironhide-master/lib/src/main/java/com/mindbodyonline/ironhide/Infrastructure/Extensions/TextViewMatchers.java
+
 }
