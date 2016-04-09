@@ -56,5 +56,6 @@ public class MainActivity extends ActionBarActivity {
 
         mJoke = getJokeAsyncTask.getJokeReturned();
         Toast.makeText(this, mJoke, Toast.LENGTH_LONG).show();
+
     }
 }
