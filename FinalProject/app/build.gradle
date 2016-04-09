@@ -47,4 +47,6 @@ dependencies {
 // Espresso core
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
 
+    compile project(path: ':androidjoketellinglibrary')
+    compile project(path: ':javajokelibrary')
 }

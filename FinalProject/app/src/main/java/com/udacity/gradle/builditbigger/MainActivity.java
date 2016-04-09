@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.util.Pair;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,11 +13,6 @@ import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 
-    public String getJoke() {
-        return mJoke;
-    }
-
-    private String mJoke;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,14 +44,10 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void tellJoke(View view){
-       // Intent intent = JokeDialogActivity.newIntent
-       // Intent jokeIntent = JokeDialogActivity.newIntent(view.getContext(), JokeFactory.newJoke());
-       // view.getContext().startActivity(JokeDialogActivity.newIntent(view.getContext(), JokeFactory.newJoke()));
+
         EndpointsAsyncTask getJokeAsyncTask = new EndpointsAsyncTask();
         getJokeAsyncTask.execute(new Pair<Context, String>(this, "Manfred"));
 
-        mJoke = getJokeAsyncTask.getJokeReturned();
-        Toast.makeText(this, mJoke, Toast.LENGTH_LONG).show();
 
     }
 }
