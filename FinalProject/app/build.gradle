@@ -10,10 +10,20 @@ android {
         // If targeting under API 20/lollipop would have to use multidex support library.
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0"
         multiDexEnabled = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+    }
+
+    productFlavors {
+        pro {
+            applicationId = "com.neiljaywarner.builditbigger.pro"
+            versionName "1.0"
+        }
+        free {
+            applicationId = "com.neiljaywarner.builditbigger.lite"
+            versionName "1.0-lite"
+        }
     }
     buildTypes {
         release {
@@ -34,7 +44,7 @@ dependencies {
 
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.google.code.findbugs:jsr305:2.0.1'
-    compile 'com.google.android.gms:play-services:8.4.0'
+    freeCompile 'com.google.android.gms:play-services:8.4.0'
 
     compile project(path: ':joketellingendpoint', configuration: 'android-endpoints')
 

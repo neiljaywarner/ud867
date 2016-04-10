@@ -23,8 +23,8 @@
         android:onClick="tellJoke"
 
         />
-
-    <com.google.android.gms.ads.AdView
+<!-- TODO: If i wanted a ad-supported version, i could put xml in app/src/lite instead of app/src/main -->
+  <!--  <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,5 +33,6 @@
         ads:adSize="BANNER"
         ads:adUnitId="@string/banner_ad_unit_id">
     </com.google.android.gms.ads.AdView>
+    -->
 
 </RelativeLayout>
