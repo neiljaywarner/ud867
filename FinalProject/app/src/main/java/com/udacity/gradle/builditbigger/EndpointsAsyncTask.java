@@ -59,6 +59,8 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
     protected void onPostExecute(String result) {
         Toast.makeText(context, result, Toast.LENGTH_LONG).show();
         context.startActivity(JokeDialogActivity.newIntent(context, JokeFactory.newJoke()));
+        // Question - would this be a place for a weak reference? It feels weird to have a context in here... I used application context in case...
+        // since the docs say package context is used in new intent..
     }
 }
 
