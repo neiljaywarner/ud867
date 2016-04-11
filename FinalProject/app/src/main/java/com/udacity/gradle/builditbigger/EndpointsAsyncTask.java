@@ -19,15 +19,17 @@ import java.io.IOException;
 /**
  * Created by neil on 3/30/16.
  */
-public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
+public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
 
     private static MyApi myApiService = null;
     private Context context;
 
-    private String jokeReturned = "";
-
+    public EndpointsAsyncTask(Context context) {
+        super();
+        this.context = context;
+    }
     @Override
-    protected String doInBackground(Pair<Context, String>... params) {
+    protected String doInBackground(Void... params) {
         if(myApiService == null) {  // Only do this once
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
@@ -46,9 +48,6 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
             myApiService = builder.build();
         }
 
-        context = params[0].first;
-        String name = params[0].second;
-            //TODO: If we don't need the Pair or the context, get rid of them.
         try {
             return myApiService.getJoke().execute().getData();
         } catch (IOException e) {
@@ -59,12 +58,7 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
     @Override
     protected void onPostExecute(String result) {
         Toast.makeText(context, result, Toast.LENGTH_LONG).show();
-        jokeReturned = null;
         context.startActivity(JokeDialogActivity.newIntent(context, JokeFactory.newJoke()));
-    }
-
-    public String getJokeReturned() {
-        return jokeReturned;
     }
 }
 
